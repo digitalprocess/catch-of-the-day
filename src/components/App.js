@@ -20,6 +20,13 @@ class App extends React.Component {
 		};
 	}
 
+	loadSamples() {
+		this.setState({
+			fishes: sampleFishes,
+			order: {}
+		});
+	}
+
 	addFish(fish) {
 		// update our state
 		const fishes = {...this.state.fishes};
@@ -28,13 +35,6 @@ class App extends React.Component {
 		fishes[`fish-${timestamp}`] = fish;
 		// set state
 		this.setState({ fishes: fishes });
-	}
-
-	loadSamples() {
-		this.setState({
-			fishes: sampleFishes,
-			order: {}
-		});
 	}
 
 	addToOrder(key) {
@@ -59,7 +59,7 @@ class App extends React.Component {
 						}
 					</ul>
 				</div>
-				<Order/>
+				<Order fishes={this.state.fishes} order={this.state.order} />
 				<Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
 			</div>
 		);
